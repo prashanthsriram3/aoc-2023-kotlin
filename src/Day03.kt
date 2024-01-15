@@ -49,15 +49,15 @@ fun main() {
     }
 
     fun part1(input: List<String>): Int =
-        matchSymbolsWithEngineParts(parseInput(input)).map { it.second }.toSet().sumOf { it.value }
+        matchSymbolsWithEngineParts(parseInput(input)).map { it.second }.sumOf { it.value }
 
     fun part2(input: List<String>): Int =
         matchSymbolsWithEngineParts(parseInput(input))
-            .asSequence()
             .filter { it.first.symbol == '*' }
             .groupBy { it.first }
             .filter { it.value.size == 2 }
-            .toList().sumOf { it.second[0].second.value * it.second[1].second.value }
+            .values
+            .sumOf { it[0].second.value * it[1].second.value }
 
     // test if implementation meets criteria from the description, like:
     val testInput = readInput("Day03_test")
