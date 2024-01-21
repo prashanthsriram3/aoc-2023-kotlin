@@ -1,12 +1,4 @@
-import kotlin.math.round
-
 fun main() {
-    fun parseInput(input: List<String>): List<Pair<Long, Long>> {
-        val times = input[0].trim().removePrefix("Time:").split(" ").filter { it.trim().isNotBlank() }.map { it.toLong() }
-        val minDistances = input[1].trim().removePrefix("Distance:").split(" ").filter { it.trim().isNotBlank() }.map { it.toLong() }
-        return times.zip(minDistances).toList()
-    }
-
     fun countWays(time: Long, minDistance: Long): Long =
         (1..<time).first { (it * (time - it)) > minDistance }.let { (time - it) - it + 1 }
 
